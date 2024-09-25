@@ -1,13 +1,13 @@
 import Form from "../components/Form"
 import Navbar from "../components/Navbar"
 
-function EditBlog(){
+function CreateBlog(){
     return(
         <>
         <Navbar />
-        <Form type="Edit"/>
+        <Form type="Create" />
         </>
     )
 }
 
-export default EditBlog
+export default CreateBlog
