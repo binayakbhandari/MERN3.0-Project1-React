@@ -16,13 +16,19 @@ function Form({ type }) {
         const { name, value } = e.target
         setData({
             ...data,
-            [name]: value
+            [name]: name === "image" ? e.target.files[0] : value
         })
     }
+    console.log(data)
 
     const createBlog = async (e)=>{
         e.preventDefault()
-        const response = await axios.post("http://localhost:3000/blog",data)
+        const response = await axios.post("http://localhost:3000/blog",data,{
+            headers : {
+                "Content-Type" : "multipart/form-data"
+            }
+        })
+
         if(response.status === 200){
             navigate("/")
         }else{
