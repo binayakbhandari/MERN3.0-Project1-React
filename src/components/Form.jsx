@@ -23,7 +23,11 @@ function Form({ type }) {
 
     const createBlog = async (e)=>{
         e.preventDefault()
-       
+        const response = await axios.post("http://localhost:3000/blog",data,{
+            headers : {
+                "Content-Type" : "multipart/form-data"
+            }
+        })
 
         if(response.status === 200){
             navigate("/")
