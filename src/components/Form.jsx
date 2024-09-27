@@ -21,7 +21,20 @@ function Form({ type }) {
     }
     console.log(data)
 
+    const createBlog = async (e)=>{
+        e.preventDefault()
+        const response = await axios.post("http://localhost:3000/blog",data,{
+            headers : {
+                "Content-Type" : "multipart/form-data"
+            }
+        })
 
+        if(response.status === 200){
+            navigate("/")
+        }else{
+            alert("Something went wrong !")
+        }
+    }
 
     return (
         <>
