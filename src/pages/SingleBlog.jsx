@@ -8,7 +8,7 @@ function SingleBlog() {
     const { id } = useParams()
     const [blog, setBlog] = useState({})
     const fetchSingleBlog = async () => {
-        const response = await axios.get("https://mern3-node-ds5t.onrender.com/" + id)
+        const response = await axios.get("https://mern3-node-ds5t.onrender.com/blog/" + id)
         console.log(response.data.data)
         setBlog(response.data.data)
     }
@@ -17,7 +17,7 @@ function SingleBlog() {
     }, [])
 
     const deleteBlog = async ()=>{
-        const response = await axios.delete("https://mern3-node-ds5t.onrender.com/" + id)
+        const response = await axios.delete("https://mern3-node-ds5t.onrender.com/blog/" + id)
         if(response.status === 200){
             navigate("/")
         }else{
