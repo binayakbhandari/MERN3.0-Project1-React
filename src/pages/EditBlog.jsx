@@ -7,12 +7,13 @@ import axios from "axios"
 function EditBlog({ type }) {
     const navigate = useNavigate()
     const {id} = useParams()
-    const [data, setData] = useState({
-        title: "",
-        subtitle: "",
-        description: "",
-        image: ""
-    })
+    // const [data, setData] = useState({
+    //     title: "",
+    //     subtitle: "",
+    //     description: "",
+    //     image: ""
+    // })
+    const [data, setData] =  useState({})
     
 
     const handleChange = (e) => {
