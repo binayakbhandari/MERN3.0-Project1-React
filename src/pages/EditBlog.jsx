@@ -1,6 +1,6 @@
 import { Link, useParams, useNavigate } from "react-router-dom"
 import Navbar from "../components/Navbar"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
 
 
@@ -15,10 +15,22 @@ function EditBlog({ type }) {
     // })
     const [data, setData] =  useState({})
     
+    const fetchBlog = async ()=>{
+        const response = await axios.get("http://localhost:3000/blog/" + id)
+        console.log(response.data.data)
+        if(response.status === 200){
+            setData(response.data.data)
+
+        }else{
+            alert("Something went wrong !")
+        }
+        
+    }
+    useEffect(()=>{
+        fetchBlog()
+    },[])
 
     const handleChange = (e) => {
-        // const value = e.target.value
-        // const name = e.target.name 
         const { name, value } = e.target
         setData({
             ...data,
@@ -56,19 +68,19 @@ function EditBlog({ type }) {
                     <div className="grid sm:grid-cols-1 gap-8">
                         <div>
                             <label className="text-gray-800 text-sm mb-2 block">Title</label>
-                            <input name="title" type="text" className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter title" onChange={handleChange} />
+                            <input name="title" type="text" className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter title" onChange={handleChange} value={data.title} />
                         </div>
                         <div>
                             <label className="text-gray-800 text-sm mb-2 block">Subtitle</label>
-                            <input name="subtitle" type="text" className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter subtitle" onChange={handleChange} />
+                            <input name="subtitle" type="text" className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter subtitle" onChange={handleChange} value={data.subtitle} />
                         </div>
                         <div>
                             <label className="text-gray-800 text-sm mb-2 block">Image</label>
-                            <input name="image" type="file" className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" onChange={handleChange} />
+                            <input name="image" type="file" className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" onChange={handleChange}  />
                         </div>
                         <div>
                             <label className="text-gray-800 text-sm mb-2 block">Description</label>
-                            <textarea name="description" type="text" className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter description" onChange={handleChange} />
+                            <textarea name="description" type="text" className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter description" onChange={handleChange} value={data.description} />
                         </div>
                     </div>
 
