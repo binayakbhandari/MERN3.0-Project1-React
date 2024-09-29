@@ -46,7 +46,32 @@ function Form({ type }) {
                     <h4 className="text-gray-800 text-base font-semibold mt-6">{type} Your Own Blog</h4>
                 </div>
 
-                
+                <form onSubmit={createBlog}>
+                    <div className="grid sm:grid-cols-1 gap-8">
+                        <div>
+                            <label className="text-gray-800 text-sm mb-2 block">Title</label>
+                            <input name="title" type="text" className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter title" onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label className="text-gray-800 text-sm mb-2 block">Subtitle</label>
+                            <input name="subtitle" type="text" className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter subtitle" onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label className="text-gray-800 text-sm mb-2 block">Image</label>
+                            <input name="image" type="file" className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" onChange={handleChange} />
+                        </div>
+                        <div>
+                            <label className="text-gray-800 text-sm mb-2 block">Description</label>
+                            <textarea name="description" type="text" className="bg-gray-100 w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter description" onChange={handleChange} />
+                        </div>
+                    </div>
+
+                    <div className="!mt-12">
+                        <button type="submit" className="py-3.5 px-7 text-sm font-semibold tracking-wider rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
+                            {type}
+                        </button>
+                    </div>
+                </form>
             </div>
         </>
     )
